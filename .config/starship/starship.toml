@@ -1,0 +1,84 @@
+format = """\
+[](bg:#030B16 fg:#7DF9AA)\
+[󰀵](bg:#7DF9AA fg:#090c0c)\
+$hostname\
+[](fg:#7DF9AA bg:#1C3A5E)\
+$time\
+[](fg:#1C3A5E bg:#3B76F0)\
+$directory\
+[](fg:#3B76F0 bg:#FCF392)\
+$git_branch\
+$git_status\
+$git_metrics\
+[](fg:#FCF392 bg:#1c1f21)\
+$character\
+$cmd_duration\
+"""
+[hostname]
+ssh_only = false
+ssh_symbol = "# on"
+format = '[$ssh_symbol $hostname ]($style)'
+trim_at = '.localdomain'
+style = "fg:#090c0c bg:#7DF9AA"
+disabled = false
+
+[directory]
+format = "[  $path ]($style)"
+style = "fg:#E4E4E4 bg:#3B76F0"
+
+[git_branch]
+format = '[ $symbol$branch(:$remote_branch)]($style)'
+symbol = " "
+style = "fg:#1C3A5E bg:#FCF392"
+
+[git_status]
+format = '[$all_status$ahead_behind]($style)'
+style = "fg:#1C3A5E bg:#FCF392"
+
+# conflicted = '[ confliced=${count}](fg:#1C3A5E bg:#FCF392) '
+# up_to_date = '[󰘽 up-to-date](fg:#1C3A5E bg:#FCF392) '
+# untracked = '[󰋗 ${count} untracked](fg:#1C3A5E bg:#FCF392) '
+# ahead = ' ahead=${count}'
+# diverged = ' ahead=${ahead_count}  behind=${behind_count}'
+# behind = ' behind=${count}'
+# stashed = '[ stashed=${count}](fg:#1C3A5E bg:#FCF392) '
+# modified = '[󰛿 modified=${count}](fg:#1C3A5E bg:#FCF392) '
+# staged = '[󰐗 staged=${count}](fg:#1C3A5E bg:#FCF392) '
+# renamed = '[󱍸 renamed=${count}](fg:#1C3A5E bg:#FCF392) '
+# deleted = '[󰍶 deleted=${count}](fg:#1C3A5E bg:#FCF392) '
+
+conflicted = ' ➜ ${count} conflicted'
+up_to_date = ' ➜ up-to-date'
+untracked = ' ➜ ${count} untracked'
+ahead = ' ➜ ${count} ahead'
+diverged = ' ➜ ${count} ahead ➜ ${count} behind'
+behind = ' ➜ ${count} behind'
+stashed = ' ➜ ${count} stashed'
+modified = ' ➜ ${count} modified'
+staged = ' ➜ ${count} staged'
+renamed = ' ➜ ${count} renamed'
+deleted = ' ➜ ${count} deleted'
+
+[git_metrics]
+format = "([ +$added]($added_style))[-$deleted]($deleted_style)"
+added_style = "fg:#1C3A5E bg:#FCF392"
+deleted_style = "fg:bright-red bg:#FCF392"
+disabled = true
+
+[hg_branch]
+format = "[ $symbol$branch ]($style)"
+symbol = " "
+
+[cmd_duration]
+format = "[$duration ]($style)"
+style = "fg:bright-white"
+
+[character]
+success_symbol = '[ success ](bold green)'
+error_symbol = '[ failed ✗](bold #E84D44)'
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "bg:#1d2230"
+format = '[[ 󱑍 $time ](bg:#1C3A5E fg:#8DFBD2)]($style)'
